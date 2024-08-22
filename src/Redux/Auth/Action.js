@@ -6,6 +6,9 @@ import {
   GET_USER_REQUEST,
   GET_USER_SUCCESS,
   LOGOUT,
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
 } from "./ActionType";
 import { API_BASE_URL } from "../../config/api";
 
@@ -44,4 +47,21 @@ export const getUser = () => async (dispatch) => {
 export const logout = () => async (dispatch) => {
   localStorage.clear();
   dispatch({ type: LOGOUT });
+};
+
+export const login = (userData) => async (dispatch) => {
+  dispatch({ type: LOGIN_REQUEST });
+
+  try {
+    const { data } = await axios.post(`${API_BASE_URL}/auth/signing`, userData);
+    
+    if (data.jwt) {
+      localStorage.setItem("jwt", data.jwt);
+      dispatch({ type: LOGIN_SUCCESS, payload: data });
+      window.location.reload();
+    }
+  } catch (error) {
+    const errorMessage = error.response?.data?.message || 'Erro desconhecido';
+    dispatch({ type: LOGIN_FAILURE, payload: errorMessage });
+  }
 };

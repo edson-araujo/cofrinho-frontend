@@ -22,14 +22,14 @@ const Auth: React.FC = () => {
           </div>
           {active ? <Login /> : <Signup />}
           <div className="mt-4 text-center text-sm">
-            {!active ? "Não têm uma conta? " : "Já têm uma conta? "}
+            {active ? "Não têm uma conta? " : "Já têm uma conta? "}
             <Link
               href="#"
               className="underline"
               prefetch="false"
               onClick={() => setActive(!active)}
             >
-               {!active ? "Criar conta" : "Entrar"}
+               {active ? "Criar conta" : "Entrar"}
             </Link>
           </div>
         </div>
@@ -37,7 +37,6 @@ const Auth: React.FC = () => {
       <div className="hidden bg-muted lg:block">
         <img
           src="/image/porquinho.png"
-          alt="Image"
           width="1920"
           height="1080"
           className="min-h-screen w-full object-cover dark:brightness-[0.2] dark:grayscale"

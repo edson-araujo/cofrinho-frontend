@@ -53,8 +53,7 @@ function Signup() {
     dispatch(register(data));
   };
   return (
-    <>
-      <FormProvider {...methods}>
+    <FormProvider {...methods}>
         <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
           <div className="grid grid-cols-2 gap-4 mb-4">
             <div className="grid gap-2">
@@ -173,7 +172,6 @@ function Signup() {
           </Button>
         </form>
       </FormProvider>
-    </>
   );
 }
 
