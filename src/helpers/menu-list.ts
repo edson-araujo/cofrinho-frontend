@@ -3,10 +3,11 @@ import {
   Users,
   Settings,
   Bookmark,
-  SquarePen,
   LayoutGrid,
-  LucideIcon
+  LucideIcon,
+  Receipt
 } from "lucide-react";
+import { BiTransfer } from "react-icons/bi";
 
 type Submenu = {
   href: string;
@@ -18,7 +19,7 @@ type Menu = {
   href: string;
   label: string;
   active: boolean;
-  icon: LucideIcon
+  icon: LucideIcon;
   submenus: Submenu[];
 };
 
@@ -29,6 +30,7 @@ type Group = {
 
 export function getMenuList(pathname: string): Group[] {
   return [
+    
     {
       groupLabel: "",
       menus: [
@@ -46,20 +48,20 @@ export function getMenuList(pathname: string): Group[] {
       menus: [
         {
           href: "",
-          label: "Depesas",
+          label: "Transações",
           active: pathname.includes("/despesas"),
-          icon: SquarePen,
+          icon: BiTransfer,
           submenus: [
             {
-              href: "/despesas/home",
+              href: "/transacao",
               label: "Home",
-              active: pathname === "/despesas/home"
+              active: pathname === "/transacao"
             },
             {
-              href: "/despesas/new",
+              href: "/transacao/cadastrar",
               label: "Cadastrar",
-              active: pathname === "/despesas/new"
-            }
+              active: pathname === "/transacao/cadastrar"
+            },
           ]
         },
         {
@@ -96,6 +98,18 @@ export function getMenuList(pathname: string): Group[] {
           submenus: []
         }
       ]
-    }
+    },
+    {
+      groupLabel: "",
+      menus: [
+        {
+          href: "/teste",
+          label: "Despesas",
+          active: pathname.includes("/teste"),
+          icon: Receipt,
+          submenus: []
+        }
+      ]
+    },
   ];
 }

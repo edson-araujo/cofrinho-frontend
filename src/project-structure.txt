@@ -1,0 +1,108 @@
+├── app
+├── App.css
+├── App.tsx
+├── assets
+│   └── react.svg
+├── components
+│   ├── admin-panel
+│   │   ├── collapse-menu-button.tsx
+│   │   ├── content-layout.tsx
+│   │   ├── menu.tsx
+│   │   ├── navbar.tsx
+│   │   ├── sheet-menu.tsx
+│   │   ├── sidebar-toggle.tsx
+│   │   └── user-nav.tsx
+│   ├── demo
+│   │   └── placeholder-content.tsx
+│   ├── layout.tsx
+│   ├── mode-toggle.tsx
+│   ├── sidebar
+│   │   └── sidebar.tsx
+│   ├── theme-provider.tsx
+│   ├── ui
+│   │   ├── avatar.tsx
+│   │   ├── badge.tsx
+│   │   ├── breadcrumb.tsx
+│   │   ├── button.tsx
+│   │   ├── calendar.tsx
+│   │   ├── card.tsx
+│   │   ├── checkbox.tsx
+│   │   ├── collapsible.tsx
+│   │   ├── dropdown-menu.tsx
+│   │   ├── form.tsx
+│   │   ├── input.tsx
+│   │   ├── label.tsx
+│   │   ├── pagination.tsx
+│   │   ├── popover.tsx
+│   │   ├── progress.tsx
+│   │   ├── scroll-area.tsx
+│   │   ├── select.tsx
+│   │   ├── separator.tsx
+│   │   ├── sheet.tsx
+│   │   ├── table.tsx
+│   │   ├── tabs.tsx
+│   │   ├── textarea.tsx
+│   │   └── tooltip.tsx
+│   └── UserProfile.tsx
+├── config
+│   └── api
+├── constants
+│   ├── routeConstants.ts
+│   └── urlConstants.ts
+├── helpers
+│   ├── menu-list.ts
+│   └── zodHelpers.ts
+├── hooks
+│   ├── use-sidebar-toggle.ts
+│   └── use-store.ts
+├── index.css
+├── lib
+│   └── utils.js
+├── list-structure.cjs
+├── main.tsx
+├── pages
+│   ├── Auth
+│   │   ├── Auth.tsx
+│   │   ├── Login.tsx
+│   │   ├── Signup.tsx
+│   │   └── SignupEmailConfirmation.tsx
+│   ├── Dashboard
+│   │   └── Dashboard.tsx
+│   └── Despesas
+│       ├── Cadastrar.tsx
+│       ├── Content.tsx
+│       └── Home.tsx
+├── redux-toolkit
+│   ├── auth
+│   │   ├── auth-selector.ts
+│   │   ├── auth-slice.ts
+│   │   ├── auth-thunks.ts
+│   │   └── __tests__
+│   │       └── auth-slice.test.ts
+│   ├── order
+│   │   ├── order-selector.ts
+│   │   ├── order-slice.ts
+│   │   ├── order-thunks.ts
+│   │   └── __tests__
+│   │       └── order-slice.test.ts
+│   └── user
+│       ├── user-selector.ts
+│       ├── user-slice.ts
+│       ├── user-thunks.ts
+│       └── __tests__
+│           └── user-slice.test.ts
+├── store.ts
+├── types
+│   └── types.ts
+├── utils
+│   ├── oauth2
+│   │   └── OAuth2RedirectHandler.tsx
+│   ├── request-service.tsx
+│   └── test
+│       ├── testHelper.tsx
+│       └── __mocks__
+│           ├── image-mock.tsx
+│           ├── orders-mock.ts
+│           ├── perfumes-mock.ts
+│           └── users-mock.ts
+└── vite-env.d.ts

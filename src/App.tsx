@@ -1,47 +1,52 @@
-import { useDispatch, useSelector } from "react-redux";
+import {  useDispatch, useSelector } from "react-redux";
 import "./App.css";
-import { Sidebar } from "./components/sidebar";
 import Auth from "./pages/Auth/Auth";
-import { getUser } from "../src/Redux/Auth/Action";
-import { useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate, useLocation } from "react-router-dom";
 import { Dashboard } from "./pages/Dashboard/Dashboard";
-import { cn } from "./lib/utils";
-import { useStore } from "./hooks/use-store";
-import { useSidebarToggle } from "./hooks/use-sidebar-toggle";
 import { DespesasHome } from "./pages/Despesas/Home";
+import { DespesasCadastrar } from "./pages/Despesas/Cadastrar";
+import { Layout } from "./components/layout";
+import { useEffect } from "react";
+import { activateAccount } from "./redux-toolkit/auth/auth-thunks";
+import { selectUserStatus } from "./redux-toolkit/auth/auth-selector";
 
 function App() {
   const dispatch = useDispatch();
-  const { auth } = useSelector((store) => store);
+  const location = useLocation();
+  const userStatus = useSelector(selectUserStatus);
 
   useEffect(() => {
-    dispatch(getUser());
-  }, [dispatch]);
+     const pathname = location.pathname;
+     const match = pathname.match(/\/activate\/(.+)/);
+     const code = match ? match[1] : null;
 
-  const sidebar = useStore(useSidebarToggle, (state) => state);
+    if (code) {
+      dispatch(activateAccount(code));
+    }
 
-  if (!sidebar) return null;
+  }, [dispatch, location.pathname]);
+
 
   return (
     <>
-      {auth.user ? (
-        <div>
-          <Sidebar />
-          <main
-            className={cn(
-              "min-h-[calc(100vh_-_56px)] bg-zinc-50 dark:bg-zinc-900 transition-[margin-left] ease-in-out duration-300",
-              sidebar?.isOpen === false ? "lg:ml-[90px]" : "lg:ml-72"
-            )}
-          >
+      {userStatus ? (
+        <Layout>
+          <div>
             <Routes>
               <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/despesas/home" element={<DespesasHome />} />
+              <Route path="/transacao" element={<DespesasHome />} />
+              <Route
+                path="/transacao/cadastrar"
+                element={<DespesasCadastrar />}
+              />
+              <Route path="*" element={<Navigate to="/dashboard" />} />
             </Routes>
-          </main>
-        </div>
+          </div>
+        </Layout>
       ) : (
-        <Auth />
+        <Routes>
+          <Route path="/" element={<Auth />} />
+        </Routes>
       )}
     </>
   );

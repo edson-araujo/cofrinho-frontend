@@ -1,20 +1,15 @@
+import { Ellipsis, LogOut } from "lucide-react";
+
 import { cn } from "../../lib/utils";
 import { Button } from "../ui/button";
+
+import { Link, useLocation } from "react-router-dom";
 import { ScrollArea } from "../ui/scroll-area";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "../ui/tooltip";
-import { useDispatch } from "react-redux";
-import { logout } from "../../Redux/Auth/Action";
-import { LogOut } from "lucide-react";
-import { useLocation } from "react-router-dom";
-import { getMenuList } from "../../helpers/menu-list";
-import { Ellipsis } from "lucide-react";
-import { Link } from "react-router-dom";
 import { CollapseMenuButton } from "./collapse-menu-button";
+import { useDispatch } from "react-redux";
+import { getMenuList } from "../../helpers/menu-list";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../ui/tooltip";
+import { logoutSuccess } from "../../redux-toolkit/user/user-slice";
 
 interface MenuProps {
   isOpen: boolean | undefined;
@@ -23,7 +18,7 @@ interface MenuProps {
 export function Menu({ isOpen }: MenuProps) {
   const dispatch = useDispatch();
   const handleLogout = () => {
-    dispatch(logout());
+    dispatch(logoutSuccess());
   };
   const { pathname } = useLocation();
   const menuList = getMenuList(pathname);
@@ -125,7 +120,7 @@ export function Menu({ isOpen }: MenuProps) {
                         isOpen === false ? "opacity-0 hidden" : "opacity-100"
                       )}
                     >
-                      Sign out
+                      Sair
                     </p>
                   </Button>
                 </TooltipTrigger>

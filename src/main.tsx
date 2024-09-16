@@ -4,16 +4,19 @@ import App from "./App.tsx";
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import { store } from "./Redux/Store.js";
 import { TooltipProvider } from "./components/ui/tooltip.tsx";
+import { ThemeProvider } from "../src/components/theme-provider.tsx";
+import { store } from "./store.ts";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
       <TooltipProvider>
-        <Provider store={store}>
-          <App />
-        </Provider>
+        <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
+          <Provider store={store}>
+            <App />
+          </Provider>
+        </ThemeProvider>
       </TooltipProvider>
     </BrowserRouter>
   </StrictMode>

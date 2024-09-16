@@ -4,7 +4,6 @@ import { Button } from "../../components/ui/button";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { login } from "../../Redux/Auth/Action";
 import { useDispatch, useSelector } from "react-redux";
 import {
   FormControl,
@@ -15,6 +14,7 @@ import {
 } from "../../components/ui/form";
 import { useEffect, useState } from "react";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
+import { login } from "../../redux-toolkit/auth/auth-thunks";
 
 const createUserFormSchema = z.object({
   email: z.string().email("O e-mail é obrigatório"),
@@ -27,7 +27,6 @@ const createUserFormSchema = z.object({
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
   
   const methods = useForm<FormData>({
     resolver: zodResolver(createUserFormSchema),
@@ -40,7 +39,7 @@ function Login() {
   const dispatch = useDispatch();
 
   const onSubmit = (data) => {
-    dispatch(login({ ...data, rememberMe }));
+    dispatch(login({ ...data }));
   };
 
   const loginError = useSelector((state) => state.auth.error);
@@ -50,6 +49,7 @@ function Login() {
       setErrorMessage(loginError);
     }
   }, [loginError]);
+
   return (
     <FormProvider {...methods}>
       <form className="space-y-3 w-full" onSubmit={handleSubmit(onSubmit)}>

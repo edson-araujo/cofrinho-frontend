@@ -1,10 +1,11 @@
-import { cn } from "../lib/utils";
+import { cn } from "../../lib/utils";
 import { Link } from "react-router-dom";
-import { useStore } from "../hooks/use-store";
-import { Button } from "./ui/button";
-import { Menu } from "./admin-panel/menu";
-import { useSidebarToggle } from "../hooks/use-sidebar-toggle";
-import { SidebarToggle } from "./admin-panel/sidebar-toggle";
+import { Button } from "../ui/button";
+import { Menu } from "../admin-panel/menu";
+import { useSidebarToggle } from "../../hooks/use-sidebar-toggle";
+import { SidebarToggle } from "../admin-panel/sidebar-toggle";
+import { useStore } from "../../hooks/use-store";
+import { SiPorkbun } from "react-icons/si";
 
 export function Sidebar() {
   const sidebar = useStore(useSidebarToggle, (state) => state);
@@ -29,7 +30,7 @@ export function Sidebar() {
           asChild
         >
           <Link href="/dashboard" className="flex items-center gap-2">
-            <img src="/logo/piggy.png" alt="" className="w-6 h-6 mr-1"/>
+            <SiPorkbun className="w-6 h-6 mr-1" />
             <h1
               className={cn(
                 "font-bold text-lg whitespace-nowrap transition-[transform,opacity,display] ease-in-out duration-300",
